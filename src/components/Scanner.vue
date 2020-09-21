@@ -14,9 +14,14 @@
 
 <script>
 //import instascan from "instascan";
+import Vue from "vue";
+import VueSimpleAlert from "vue-simple-alert";
+
+Vue.use(VueSimpleAlert);
 export default {
     
     methods: {
+        
         loadScanner() {
             let scanner = new window.Instascan.Scanner({
                 video: document.getElementById("video"),
@@ -38,12 +43,26 @@ export default {
                 scan(content) {
             if (content == "david") {
                 console.log("dope")
+                this.$alert("Dope");
             } else {
                 console.log("no dope")
+                this.$alert("No Dope");
             }
         }
     },
     mounted() {
+
+            const splashScreen = document.getElementById("splash");
+            let visited = sessionStorage.getItem("visited");
+            if (!visited) {
+                let loadingInterval = setInterval(() => {
+                    splashScreen.classList.add("loaded");
+                    clearInterval(loadingInterval);
+                    sessionStorage.setItem("visited", true);
+                }, 700);
+            } else {
+                splashScreen.classList.add("loaded");
+            }
             // Grab elements, create settings, etc.
             var video = document.getElementById('video');
 
@@ -128,6 +147,25 @@ body{
     display: block;
     z-index: 2;
     width: 100%;
+}
+
+#splash {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #202020;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loaded {
+    display: none !important;
+}
+
+img {
+    width: 170px;
+    display: flex;
 }
 
 </style>
