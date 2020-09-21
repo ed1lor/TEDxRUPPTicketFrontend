@@ -1,14 +1,18 @@
 <template>
-    <div class= "v-header container">
-      <div class="header-content">
-        <h1>TedXRUPP, TedSalon</h1>
-      </div>
-      <div class="fullscreen-video-wrap">
-        <video id="video" autoplay></video>
-        <canvas id="canvas"></canvas>
-      </div>
 
-      <div class="header-overlay"></div>
+    <div class="v-header container">
+        <div id="splash">
+            <img src="../assets/tedxrupp-logo.svg" />
+        </div>
+        <div class="header-content">
+            <h1>TedXRUPP, TedSalon</h1>
+        </div>
+        <div class="fullscreen-video-wrap">
+            <video id="video" autoplay></video>
+         
+        </div>
+
+        <!-- <div class="header-overlay"></div> -->
     </div>
 </template>
 
@@ -16,7 +20,10 @@
 //import instascan from "instascan";
 import Vue from "vue";
 import VueSimpleAlert from "vue-simple-alert";
+ //ES6 Modules or TypeScript
+import Swal from 'sweetalert2'
 
+// CommonJS
 Vue.use(VueSimpleAlert);
 export default {
     
@@ -43,10 +50,20 @@ export default {
                 scan(content) {
             if (content == "david") {
                 console.log("dope")
-                this.$alert("Dope");
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Hooray!',
+                    text: 'You have successfully redeemed your ticket.',
+                    confirmButtonColor: '#e62b1e'
+                })
             } else {
                 console.log("no dope")
-                this.$alert("No Dope");
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    confirmButtonColor: '#e62b1e'
+                })
             }
         }
     },
@@ -59,7 +76,7 @@ export default {
                     splashScreen.classList.add("loaded");
                     clearInterval(loadingInterval);
                     sessionStorage.setItem("visited", true);
-                }, 700);
+                }, 1500);
             } else {
                 splashScreen.classList.add("loaded");
             }
@@ -88,14 +105,12 @@ export default {
 </script>
 
 <style scoped>
-    *
-{
-    box-sizing: border-box;
-}
 body{
+    padding: 0;
     margin: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
+
 .v-header {
     height: 100vh;
     display: flex;
@@ -112,20 +127,22 @@ body{
 }
 
 .fullscreen-video-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+    position: fixed;
     height: 100vh;
-    overflow: hidden;
+    width: 100%;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    left: 0;
 }
 
 .fullscreen-video-wrap video{
     min-width: 100%;
-    min-height: 100%;
+    min-height: 100vh;
 }
 
-.header-overlay{
+/* .header-overlay{
     height: 100vh;
     width: 100vw;
     position: absolute;
@@ -133,8 +150,8 @@ body{
     left:0;
     background: crimson;
     z-index: 1;
-    opacity:0.2;
-}
+    opacity:0.85;
+} */
 
 .header-content {
     z-index: 2;
@@ -147,6 +164,7 @@ body{
     display: block;
     z-index: 2;
     width: 100%;
+    overflow-y: hidden;
 }
 
 #splash {
@@ -157,6 +175,10 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10000;
+    overflow: hidden;
+    top: 0;
+    left: 0;
 }
 
 .loaded {
