@@ -62,7 +62,7 @@ export default {
                     icon: 'error',
                     title: 'Oops...',
                     text: 'Something went wrong!',
-                    confirmButtonColor: '#e62b1e'
+                    confirmButtonColor: '#e62b1e',
                 })
             }
         }
@@ -120,6 +120,8 @@ body{
 }
 .container{
     max-width: 960px;
+    padding-left: 1rem;
+    padding-right: 1rem;
     margin: auto;
     text-align: center;
 }
