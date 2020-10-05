@@ -5,7 +5,7 @@
             <img src="../assets/tedxrupp-logo.svg" />
         </div>
         <div class="header-content">
-            <h1>TedXRUPP, TedSalon</h1>
+            <img src="../assets/tedxrupp-logo.svg" />
         </div>
         <div class="fullscreen-video-wrap">
             <video id="video" autoplay></video>
@@ -105,41 +105,51 @@ export default {
 </script>
 
 <style scoped>
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
 body{
     padding: 0;
     margin: 0;
-    overflow: hidden;
 }
 
 .v-header {
     height: 100vh;
     display: flex;
-    align-items: center;
-    flex-direction: column;
-    align-content: center;
+    align-items: top;
+    justify-content: center;
+    
 }
 .container{
-    max-width: 960px;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    margin: auto;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
     text-align: center;
+    position: relative;
 }
 
 .fullscreen-video-wrap {
-    position: fixed;
-    height: 100vh;
     width: 100%;
-    object-fit: cover;
+    height: 100vh;
+    overflow: hidden;
     margin: 0;
-    padding: 0;
-    top: 0;
-    left: 0;
+    position: relative;
+    clear:both;
 }
 
 .fullscreen-video-wrap video{
+    position: absolute;
+    left: -1000%;
+    right: -1000%;
+    top: -1000%;
+    bottom: -1000%;
+    margin: auto;
+    min-height: 100%;
     min-width: 100%;
-    min-height: 100vh;
 }
 
 /* .header-overlay{
@@ -148,7 +158,7 @@ body{
     position: absolute;
     top:0;
     left:0;
-    background: crimson;
+    background: black;
     z-index: 1;
     opacity:0.85;
 } */
@@ -157,14 +167,12 @@ body{
     z-index: 2;
 }
 
-.header-content h1{
-    text-align: center;
-    font-size: 2rem;
-    font-family: "Cookie";
-    display: block;
-    z-index: 2;
+.header-content img{
+    padding: 1rem;
+    height: 90px;
+    display: flex;
+    position: absolute;
     width: 100%;
-    overflow-y: hidden;
 }
 
 #splash {
